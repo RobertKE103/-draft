@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.networkinteractions.R
 import com.example.networkinteractions.databinding.FragmentSettingBinding
 import com.example.networkinteractions.ui.SwitchMenu
+import com.example.networkinteractions.ui.bottomShetDialog.BottomSheetDialogSettingFragment
 import com.example.networkinteractions.ui.main.MainFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -28,6 +28,9 @@ class SettingFragment : Fragment() {
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
     private var menu: SwitchMenu? = null
+
+
+    private val bottomSheetDialog by lazy { BottomSheetDialogSettingFragment() }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -46,7 +49,7 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         menu?.visibleMenu(false)
-        
+
         binding.intentMainFragment.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .addToBackStack(null)
@@ -56,9 +59,12 @@ class SettingFragment : Fragment() {
 
         binding.themeNews.setOnCheckedChangeListener { radioGroup, i ->
             radioGroup.findViewById<RadioButton>(i).apply {
-                viewModel.saveThemeSetting(text.toString())
-                Toast.makeText(requireActivity(), text.toString(), Toast.LENGTH_LONG).show()
+                saveTheme(i)
             }
+        }
+
+        binding.themeNews.findViewById<RadioButton>(R.id.hz_theme).setOnClickListener {
+            showBottomSheetDialog()
         }
 
 
@@ -67,6 +73,19 @@ class SettingFragment : Fragment() {
                 setupRadioGroup(it)
                 Log.d("dataStoreTest", it)
             }
+        }
+    }
+
+
+    private fun showBottomSheetDialog(){
+        bottomSheetDialog.show(requireActivity().supportFragmentManager, "tag")
+    }
+    private fun saveTheme(themeId: Int) {
+
+        val radioButton = binding.themeNews.findViewById<RadioButton>(themeId)
+
+        if (themeId != R.id.hz_theme) {
+            viewModel.saveThemeSetting(radioButton.text.toString())
         }
     }
 
@@ -82,6 +101,9 @@ class SettingFragment : Fragment() {
 
         }
 
+        if (id == R.id.hz_theme) {
+            binding.themeNews.findViewById<RadioButton>(id).text = theme
+        }
 
         binding.themeNews.findViewById<RadioButton>(id).isChecked = true
 

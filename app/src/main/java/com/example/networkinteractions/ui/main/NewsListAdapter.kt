@@ -23,11 +23,12 @@ class NewsListAdapter :
             with(viewBinding) {
                 Glide.with(context)
                     .load(article?.urlToImage)
-                    .optionalCenterCrop()
+                    .centerCrop()
                     .placeholder(R.drawable.ic_launcher_foreground)
                     .into(image)
 
                 title.text = article?.title ?: ""
+                content.text = article?.content
             }
         }
     }

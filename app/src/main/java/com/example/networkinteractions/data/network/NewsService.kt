@@ -12,8 +12,8 @@ interface NewsService {
     suspend fun getNews(
         @Query("apiKey") key: String = API_KEY,
         @Query("q") category: String = "Android",
-        @Query("searchIn") typeResponse: String = "title",
-        @Query("sortBy") sort: String = "popularity"
+        @Query("sortBy") sort: String = "popularity",
+        @Query("language") lang: String = "ru"
     ): Response<NewsMain>
 
 }

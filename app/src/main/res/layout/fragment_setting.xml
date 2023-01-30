@@ -121,7 +121,8 @@
                 android:text="@string/hz"
                 android:textAlignment="center"
                 android:textColor="@drawable/custom_radio_text"
-                android:textSize="16sp" />
+                android:textSize="16sp">
+            </RadioButton>
 
         </RadioGroup>
 

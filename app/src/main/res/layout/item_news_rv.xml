@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="35dp"
+    app:cardCornerRadius="15dp"
     android:layout_marginBottom="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,13 +16,12 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/title">
+            android:layout_marginBottom="10dp">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="332dp"
+                android:layout_height="200dp"
                 tools:src="@drawable/ic_launcher_background" />
         </androidx.cardview.widget.CardView>
 
@@ -33,13 +32,28 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:textColor="@color/lb_tv_white"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="android welcome from pizdec" />
+
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="@id/title"
+            app:layout_constraintEnd_toEndOf="@id/title"
+            tools:text="russion win svo russion win svo russion win svo russion win svo russion win svo russion win svo russion win svo russion win svo russion win svo russion win svo russion win svo russion win svo"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

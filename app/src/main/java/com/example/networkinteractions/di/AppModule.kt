@@ -51,7 +51,6 @@ object AppModule {
     fun provideOkhttpClient(): OkHttpClient =
         OkHttpClient()
             .newBuilder()
-            .addInterceptor(DelayInterceptor(15L, TimeUnit.MINUTES))
             .build()
 
     @Singleton

@@ -17,5 +17,6 @@
     <string name="night">Night</string>
 
     <string name="theme_news_setting">THEME_KEY</string>
+    <string name="enter_theme_news">Enter theme news</string>
 
 </resources>
